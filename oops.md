@@ -92,6 +92,7 @@ To implement an interface, a class must use the implements keyword.
 An abstract class or method is defined with the abstract keyword.
 
 12. Differentiate between Abstract class and interface.
+
 ✅ The main differences between abstract class and interface in PHP are:
 
 Abstract class:
@@ -109,6 +110,7 @@ All the methods in the interface are abstract by default.
 The interface methods must be public.
 
 13. Explain Namespaces.
+
 ✅ Namespaces are qualifiers that solve two different problems:
 
 They allow for better organization by grouping classes that work together to perform a task
