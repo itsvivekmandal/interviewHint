@@ -85,13 +85,13 @@ Interfaces make it easy to use a variety of different classes in the same way. W
 Interfaces are declared using the interface keyword.
 To implement an interface, a class must use the implements keyword.
 
-12. What is abstract class in PHP?
+11. What is abstract class in PHP?
 
 ✅ An abstract class is a class that contains at least one abstract method. An abstract method is a method that is declared, but not implemented in the code.
 
 An abstract class or method is defined with the abstract keyword.
 
-11. Differentiate between Abstract class and interface.
+12. Differentiate between Abstract class and interface.
 ✅ The main differences between abstract class and interface in PHP are:
 
 Abstract class:
@@ -108,7 +108,7 @@ The members of the interface can not be static.
 All the methods in the interface are abstract by default.
 The interface methods must be public.
 
-12. Explain Namespaces.
+13. Explain Namespaces.
 ✅ Namespaces are qualifiers that solve two different problems:
 
 They allow for better organization by grouping classes that work together to perform a task
