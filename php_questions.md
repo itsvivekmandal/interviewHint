@@ -166,7 +166,7 @@ An abstract class or method is defined with the abstract keyword.
 
 **Answer:** The main differences between abstract class and interface in PHP are:
 
-*    **Abstract class:**
+*   **Abstract class:**
     * It is under partial abstraction.	
     * It is declared by using an abstract keyword.
     * Complete members of abstract classes can be static.
