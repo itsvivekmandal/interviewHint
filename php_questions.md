@@ -37,11 +37,11 @@ The only differences are as follows:
 
 **Answer:** GET displays the submitted data as part of the URL, during POST this information is not shown as it’s encoded in the request.
 
-*   GET can handle a maximum of 2048 characters, POST has no such restrictions.
+GET can handle a maximum of 2048 characters, POST has no such restrictions.
 
-*   GET allows only ASCII data, POST has no restrictions, binary data are also allowed.
+GET allows only ASCII data, POST has no restrictions, binary data are also allowed.
 
-*   Normally GET is used to retrieve data while POST to insert and update.
+Normally GET is used to retrieve data while POST to insert and update.
 
 ### 6. How can you enable error reporting in PHP?
 
@@ -53,11 +53,11 @@ Then, include “error_reporting(E_ALL)” in your code to display all types of 
 
 **Answer:** In PHP, there are three types of arrays:
 
-    Indexed arrays => Arrays with a numeric index
+*   **Indexed arrays** => Arrays with a numeric index
 
-    Associative arrays => Arrays with named keys
+*   **Associative arrays** => Arrays with named keys
     
-    Multidimensional arrays => Arrays containing one or more arrays
+*   **Multidimensional arrays** => Arrays containing one or more arrays
 
 ### 100. What are SQL Injections, how do you prevent them and what are the best practices?
 
@@ -77,9 +77,10 @@ Do not use any of the mysql_* functions which have been deprecated since PHP 5.5
 
 ### 2. What is a class and object?
 
-**Answer:** Class => A class is a blueprint for an object. It defines properties and other functions associated with the object. It is created using the "class" keyword.
+**Answer:** 
+* **Class** => A class is a blueprint for an object. It defines properties and other functions associated with the object. It is created using the "class" keyword.
 
-Object => Each object has its own properties and functions defined under the class. They can interact without having information about each other. It is created using a "new" keyword.
+*   **Object** => Each object has its own properties and functions defined under the class. They can interact without having information about each other. It is created using a "new" keyword.
 (An instance of a class is know as Object.)
 
 ### 3. What do you mean by Inheritance?
@@ -100,11 +101,11 @@ To call a static method and variables from a child class, use the "parent" keywo
 
 **Answer:** The three access specifiers in PHP are:
 
-    Public => The members of the class specified as the public can be accessible everywhere
+*   **Public** => The members of the class specified as the public can be accessible everywhere
 
-    Protected => The members of the class specified as protected can be accessible within that particular class and the derived class which extends this class
+*   **Protected** => The members of the class specified as protected can be accessible within that particular class and the derived class which extends this class
 
-    Private => The members of the class specified as private can be accessed only within that class
+*   **Private** => The members of the class specified as private can be accessed only within that class
 
 ### 7. Explain Polymorphism with the help of an example.
 
@@ -136,11 +137,11 @@ Runtime polymorphism(Method overriding): Runtime polymorphism in object-oriented
 
 **Answer:** The three types of constructors in PHP are:
 
-Default constructor: The constructor with no parameters
+*   **Default constructor:** The constructor with no parameters
 
-Parameterized constructor: The constructor with arguments is called a parameterized constructor
+*   **Parameterized constructor:** The constructor with arguments is called a parameterized constructor
 
-Copy constructor: This constructor will take the address of the other objects as a parameter
+*   **Copy constructor:** This constructor will take the address of the other objects as a parameter
 
 ### 9. What is the use of the final keyword in PHP?
 
@@ -165,19 +166,19 @@ An abstract class or method is defined with the abstract keyword.
 
 **Answer:** The main differences between abstract class and interface in PHP are:
 
-    Abstract class:
-    It is under partial abstraction.	
-    It is declared by using an abstract keyword.
-    Complete members of abstract classes can be static.
-    In abstract class a method must be declared as abstract.
-    The abstract methods can be protected or public.
+*    **Abstract class:**
+    * It is under partial abstraction.	
+    * It is declared by using an abstract keyword.
+    * Complete members of abstract classes can be static.
+    * In abstract class a method must be declared as abstract.
+    * The abstract methods can be protected or public.
 
-    Interface:
-    It is under full abstraction.
-    It is declared by using the interface keyword.
-    The members of the interface can not be static.
-    All the methods in the interface are abstract by default.
-    The interface methods must be public.
+*   **Interface:**
+    * It is under full abstraction.
+    * It is declared by using the interface keyword.
+    * The members of the interface can not be static.
+    * All the methods in the interface are abstract by default.
+    * The interface methods must be public.
 
 ### 13. Explain Namespaces.
 
