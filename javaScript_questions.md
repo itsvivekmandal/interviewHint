@@ -42,24 +42,21 @@ Server Side => A server side is a device, computer or software application that 
 
 7. What is the difference between var and let?
 
-✅ 
-    1. Scope:
+✅  Differences:
 
+    1. Scope:
     var: Variables declared with var are function-scoped. This means they are only visible within the function where they are declared, and they are not block-scoped.
     let: Variables declared with let are block-scoped. They are only accessible within the block (a pair of curly braces {}) where they are defined, whether it's inside a function, loop, or any other block.
 
     2. Hoisting:
-
     var: Variables declared with var are hoisted to the top of their scope. This means you can use a var variable before it is declared in the code.
     let: Variables declared with let are also hoisted, but there is a key difference known as the "temporal dead zone." If you try to access a let variable before it is declared, you'll get a ReferenceError.
 
     3. Re-declaration:
-
     var: You can re-declare a variable using var within the same scope without any error.
     let: You cannot re-declare a variable using let within the same scope. Attempting to do so will result in a SyntaxError.
 
     4. Global Object Property:
-
     var: Variables declared with var become properties of the global object (e.g., window in a browser environment).
     let: Variables declared with let do not become properties of the global object.
 
