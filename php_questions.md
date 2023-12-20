@@ -4,20 +4,20 @@
 
 **Answer:** echo and print are largely the same in PHP. Both are used to output data to the screen.
 
-    The only differences are as follows:
-    1. echo does not return a value whereas print does return a value of 1 (this enables print to be used in expressions).
+The only differences are as follows:
+*   echo does not return a value whereas print does return a value of 1 (this enables print to be used in expressions).
 
-    2. echo can accept multiple parameters (although such usage is rare) while print can only take a single argument.
+*   echo can accept multiple parameters (although such usage is rare) while print can only take a single argument.
 
-    3. echo is fatser than print.
+*   echo is fatser than print.
 
 ### 2. What is the difference between the include() and require() functions?
 
 **Answer:** include() and require() both are used to include a specific file in script.
 
-    include() : If the file can’t be included then it will execute the remaining script and show an warning error.
+*   include() : If the file can’t be included then it will execute the remaining script and show an warning error.
 
-    require() : If the file can’t be included then it will stoped the script execution with fatal error.
+*   require() : If the file can’t be included then it will stoped the script execution with fatal error.
 
 ### 3. What’s the difference between unset() and unlink()?
 
@@ -27,21 +27,21 @@
 
 **Answer:** In PHP there are three main type of errors:
 
-    Notices => Simple, non-critical errors that are occurred during the script execution. An example of a Notice would be accessing an undefined variable.
+*   **Notices** => Simple, non-critical errors that are occurred during the script execution. An example of a Notice would be accessing an undefined variable.
 
-    Warnings => more important errors than Notices, however the scripts continue the execution. An example would be include() a file that does not exist.
+*   **Warnings** => more important errors than Notices, however the scripts continue the execution. An example would be include() a file that does not exist.
 
-    Fatal => this type of error causes a termination of the script execution when it occurs. An example of a Fatal error would be accessing a property of a non-existent object or require() a non-existent file.
+*   **Fatal** => this type of error causes a termination of the script execution when it occurs. An example of a Fatal error would be accessing a property of a non-existent object or require() a non-existent file.
 
 ### 5. What is the difference between GET and POST?
 
 **Answer:** GET displays the submitted data as part of the URL, during POST this information is not shown as it’s encoded in the request.
 
-GET can handle a maximum of 2048 characters, POST has no such restrictions.
+*   GET can handle a maximum of 2048 characters, POST has no such restrictions.
 
-GET allows only ASCII data, POST has no restrictions, binary data are also allowed.
+*   GET allows only ASCII data, POST has no restrictions, binary data are also allowed.
 
-Normally GET is used to retrieve data while POST to insert and update.
+*   Normally GET is used to retrieve data while POST to insert and update.
 
 ### 6. How can you enable error reporting in PHP?
 
