@@ -22,7 +22,7 @@ Server Side => A server side is a device, computer or software application that 
 
 ✅ Scope determines where variables are defined and where they can be accessed.
 
-There are three types of scope:
+    There are three types of scope:
     1. Global Scope
     2. Functional Scope
     3. Block or Scope
@@ -35,14 +35,15 @@ There are three types of scope:
 
 ✅ Var is the default variable in javaScript.
 
-There three type of varibles:
+    There three type of varibles:
     1. Var
     2. Let 
     3. Const
 
 7. What is the difference between var and let?
 
-✅ 1. Scope:
+✅ 
+    1. Scope:
 
     var: Variables declared with var are function-scoped. This means they are only visible within the function where they are declared, and they are not block-scoped.
     let: Variables declared with let are block-scoped. They are only accessible within the block (a pair of curly braces {}) where they are defined, whether it's inside a function, loop, or any other block.
