@@ -19,6 +19,7 @@ Eg. Chrome(V8), Firefox(Spider Monkey), Edge(Chakra), Safari (Javascript core)
 Server Side => A server side is a device, computer or software application that provides services, resources or functions to client.
 
 4. What is Scope in Javascript?
+
 ✅ Scope determines where variables are defined and where they can be accessed.
 
 There are three types of scope:
