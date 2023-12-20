@@ -1,6 +1,6 @@
 # Top JavaScript Interview Questions and Answers 🚀
 
-1. What is DOM?
+**1. What is DOM?**
 
 ✅ The DOM represent the web page as a tree-like structure.
 
