@@ -16,3 +16,11 @@
 *   Supports server-side rendering which is useful for Search Engine Optimizations(SEO).
 *   Follows Unidirectional or one-way data flow or data binding.
 *   Uses reusable/composable UI components to develop the view.
+
+### 4. What is JSX?
+
+**Answer:** JSX stands for "JavaScript XML." It is a syntax extension for JavaScript that allows developers to write HTML-like code in their JavaScript files. JSX is most commonly associated with React, where it is used to define the structure of React components.
+
+### 5. What is NPM?
+
+**Answer:** NPM is a command-line tool used to manage packages for Node.js.
