@@ -1,4 +1,4 @@
-# Top PHP Interview Questions and Answers 🚀
+# Top React Interview Questions and Answers 🚀
 
 ### 1. What is Ract? 
 
