@@ -35,4 +35,61 @@ Node js uses a asynchronous event-driven architecture with non-blocking I/O prim
   const add = require('./utils');
   console.log(add(2, 3)); // 5
   ```
+
+  2. Exporting multiple values:
+  
+  ```js
+  // utils.js
+  module.exports = {
+      add: (a, b) => a + b,
+      subtract: (a, b) => a - b,
+  };
+  ```
+  Importing:
+  ```js
+  const { add, subtract } = require('./utils');
+  console.log(add(2, 3)); // 5
+  console.log(subtract(5, 2)); // 3
+  ```
+  #### ES Modules (ESM) Export
+    ES Modules follow the standardized export and import syntax.
+
+    Enable ES modules in Node.js by adding "type": "module" in package.json or using .mjs file extension.
+
+    1. Exporting and importing a single value:
+    
+    ```js
+    // utils.js
+    export default function add(a, b) {
+        return a + b;
+    }
+    ```
+    Importing:
+    ```js
+    import add from './utils.js';
+    console.log(add(2, 3)); // 5
+    ```
+
+    2. Exporting multiple values:
+    
+    ```js
+    // utils.js
+    export const add = (a, b) => a + b;
+    export const subtract = (a, b) => a - b;
+    ```
+    Importing:
+    ```js
+    import { add, subtract } from './utils.js';
+    console.log(add(2, 3)); // 5
+    console.log(subtract(5, 2)); // 3
+    ```
+    #### Key Differences Between CommonJS and ES Modules
+    | Feature           | CommonJS                | ES Modules             |
+    |-------------------|-------------------------|-------------------------|
+    | Syntax            | `module.exports` / `exports` | `export` / `export default` |
+    | Import Syntax     | `require()`            | `import`               |
+    | File Extensions   | `.js`                  | `.js` or `.mjs`        |
+    | Default Export    | `module.exports = value` | `export default value` |
+    | Named Export      | `exports.name = value` | `export const name = value` |
+
   
