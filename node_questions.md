@@ -52,9 +52,9 @@ Node js uses a asynchronous event-driven architecture with non-blocking I/O prim
   console.log(subtract(5, 2)); // 3
   ```
   #### ES Modules (ESM) Export
-    ES Modules follow the standardized export and import syntax.
+  ES Modules follow the standardized export and import syntax.
 
-    Enable ES modules in Node.js by adding "type": "module" in package.json or using .mjs file extension.
+  Enable ES modules in Node.js by adding "type": "module" in package.json or using .mjs file extension.
 
     1. Exporting and importing a single value:
     
@@ -83,7 +83,7 @@ Node js uses a asynchronous event-driven architecture with non-blocking I/O prim
     console.log(add(2, 3)); // 5
     console.log(subtract(5, 2)); // 3
     ```
-    #### Key Differences Between CommonJS and ES Modules
+  #### Key Differences Between CommonJS and ES Modules
     | Feature           | CommonJS                | ES Modules             |
     |-------------------|-------------------------|-------------------------|
     | Syntax            | `module.exports` / `exports` | `export` / `export default` |
