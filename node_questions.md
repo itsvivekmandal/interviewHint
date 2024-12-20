@@ -84,12 +84,12 @@ Node js uses a asynchronous event-driven architecture with non-blocking I/O prim
   console.log(subtract(5, 2)); // 3
   ```
   #### Key Differences Between CommonJS and ES Modules
-    | Feature           | CommonJS                      | ES Modules                  |
-    |-------------------|-------------------------------|-----------------------------|
-    | Syntax            | `module.exports` / `exports`  | `export` / `export default` |
-    | Import Syntax     | `require()`                   | `import`                    |
-    | File Extensions   | `.js`                         | `.js` or `.mjs`             |
-    | Default Export    | `module.exports = value`      | `export default value`      |
-    | Named Export      | `exports.name = value`        | `export const name = value` |
+    | Feature           | CommonJS                 | ES Modules                |
+    |-------------------|--------------------------|---------------------------|
+    | Syntax            | module.exports / exports | export / export default   |
+    | Import Syntax     | require()                | import                    |
+    | File Extensions   | .js                      | .js or .mjs               |
+    | Default Export    | module.exports = value   | export default value      |
+    | Named Export      | exports.name = value     | export const name = value |
 
   
