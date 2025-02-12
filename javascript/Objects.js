@@ -19,6 +19,11 @@ const personUsingConstructorFunction = new Person("Vivek", 31);
 // d.Using Object.create() (for prototype-based inheritance)
 const person = Object.create({ name: "Vivek", age: 31 });
 
+// 3. How do you access object property?
+console.log(person.name); // using dot notation
+console.log(person['age']); // using bracket notation
+
+
 
 
 
