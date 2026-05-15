@@ -59,7 +59,7 @@ Then, include “error_reporting(E_ALL)” in your code to display all types of 
     
 *   **Multidimensional arrays** => Arrays containing one or more arrays
 
-### 100. What are SQL Injections, how do you prevent them and what are the best practices?
+### 8. What are SQL Injections, how do you prevent them and what are the best practices?
 
 **Answer:** SQL injections are a method to alter a query in a SQL statement send to the database server. That modified query then might leak information like username/password combinations and can help the intruder to further compromise the server.
 
