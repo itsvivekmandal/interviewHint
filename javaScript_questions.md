@@ -27,17 +27,27 @@ Eg. Chrome(V8), Firefox(Spider Monkey), Edge(Chakra), Safari (Javascript core)
 There are three types of scope:
 *   Global Scope
 *   Functional Scope
-*   Block or Scope
+*   Block Scope
 
-### 5. what is Lexical Scope? 
+### 5. Why Do We Need Scope?
+
+**Answer:** Scope helps:
+
+*   Prevent variable conflict
+*   Protect data
+*   Reduce memory usage
+*   Control accessibility
+*   Organize code
+
+### 6. What is Lexical Scope? 
 
 **Answer:** Lexical Scope (also known as Static Scope) is the convention where a function's scope is determined strictly by its physical location within the source code. In other words, a function's "outer environment" is defined at the moment the code is written, not when the function is called. This ensures that a function always has access to the variables that were in its environment at the time of its creation.
 
-### 6. What is Scope Chain? 
+### 7. What is Scope Chain? 
 
 **Answer:** The Scope Chain is a mechanism in JavaScript that determines how variables are looked up. When the code tries to access a variable, the engine first searches the local scope. If it is not found, it moves up to the outer function's scope, continuing this process until it reaches the global scope. This creates a "one-way street" where inner functions can access variables from their outer parents, but outer functions cannot access variables defined inside inner functions.
 
-### 7. Types of variable? 
+### 8. Types of variable? 
 
 **Answer:** Var is the default variable in javaScript.
 
@@ -46,7 +56,7 @@ There three type of varibles:
 *   Let
 *   Const
 
-### 8. What is the difference between var and let? 
+### 9. What is the difference between var and let? 
 
 **Answer:** Differences:
 
@@ -66,7 +76,7 @@ There three type of varibles:
     **var:** Variables declared with var become properties of the global object (e.g., window in a browser environment).
     **let:** Variables declared with let do not become properties of the global object.
 
-### 9. What is closure?
+### 10. What is closure?
 
 **Answer:** A Closure is a feature where an inner function retains access to the variables of its outer function even after the outer function has finished executing and has been removed from the call stack.
 ```
@@ -83,7 +93,7 @@ let hi = greeting();
 hi('Vivek'); // still can access the message variable
 ```
 
-### 10. What is hoisting?
+### 11. What is hoisting?
 
 **Answer:** When the JavaScript engine executes the JavaScript code, it creates the global execution context.
 
@@ -110,10 +120,10 @@ function add(a, b) {
 }
 ```
 
-### 11. What is temporal dead zone? 
+### 12. What is temporal dead zone? 
 
 **Answer:** The temporal dead zone (TDZ) is a specific period in the execution of JavaScript code where variables declared with let and const exist but cannot be accessed or assigned any value. During this phase, accessing or using the variable will result in a ReferenceError .
 
-### 12. What is JSON? 
+### 13. What is JSON? 
 
 **Answer:** JSON(Javascript Object Notation) is a light weight data interchange formate. JSON consists of Key value pairs.
