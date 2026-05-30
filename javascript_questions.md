@@ -76,7 +76,49 @@ There three type of varibles:
     **var:** Variables declared with var become properties of the global object (e.g., window in a browser environment).
     **let:** Variables declared with let do not become properties of the global object.
 
-### 10. What is closure?
+### 10. Why Does This Print 3 3 3?
+```
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => {
+        console.log(i);
+    }, 100);
+}
+```
+**Answer:** Because:
+
+*   var has single shared binding
+*   loop finishes first
+*   i becomes 3
+*   all callbacks reference same i
+
+### 11. Why Does let Fix It?
+```
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+        console.log(i);
+    }, 100);
+}
+```
+**Answer:** Because let creates New binding per iteration.
+```
+Internal Concept
+
+Iteration 1:
+
+i → 0
+
+Iteration 2:
+
+i → 1
+
+Iteration 3:
+
+i → 2
+
+Each callback closes over different binding.
+```
+
+### 12. What is closure?
 
 **Answer:** A Closure is a feature where an inner function retains access to the variables of its outer function even after the outer function has finished executing and has been removed from the call stack.
 ```
@@ -93,7 +135,22 @@ let hi = greeting();
 hi('Vivek'); // still can access the message variable
 ```
 
-### 11. What is hoisting?
+### 13. Can Closures Cause Memory Leaks?
+
+**Answer:** Yes. If closure keeps unnecessary large objects alive.
+```
+function test() {
+    let hugeData = new Array(1000000);
+
+    return function() {
+        console.log("Hi");
+    };
+}
+
+hugeData may remain in memory if closure retains lexical environment.
+```
+
+### 14. What is hoisting?
 
 **Answer:** When the JavaScript engine executes the JavaScript code, it creates the global execution context.
 
@@ -120,10 +177,10 @@ function add(a, b) {
 }
 ```
 
-### 12. What is temporal dead zone? 
+### 15. What is temporal dead zone? 
 
-**Answer:** The temporal dead zone (TDZ) is a specific period in the execution of JavaScript code where variables declared with let and const exist but cannot be accessed or assigned any value. During this phase, accessing or using the variable will result in a ReferenceError .
+**Answer:** The temporal dead zone (TDZ) is a specific period in the execution of JavaScript code where variables declared with let and const exist but cannot be accessed or assigned any value. During this phase, accessing or using the variable will result in a ReferenceError. TDZ prevent accidental early access.
 
-### 13. What is JSON? 
+### 16. What is JSON? 
 
 **Answer:** JSON(Javascript Object Notation) is a light weight data interchange formate. JSON consists of Key value pairs.
