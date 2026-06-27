@@ -65,12 +65,12 @@ There three type of varibles:
     **let:** Variables declared with let are block-scoped. They are only accessible within the block (a pair of curly braces {}) where they are defined, whether it's inside a function, loop, or any other block.
 
 *   **Hoisting:**
-    **var:** Variables declared with var are hoisted to the top of their scope. This means you can use a var variable before it is declared in the code.
-    **let:** Variables declared with let are also hoisted, but there is a key difference known as the "temporal dead zone." If you try to access a let variable before it is declared, you'll get a ReferenceError.
+    **var:** Variables declared with var are hoisted to the top of their scope. This means we can use a var variable before it is declared in the code.
+    **let:** Variables declared with let are also hoisted, but there is a key difference known as the "temporal dead zone." If we try to access a let variable before it is declared, we'll get a ReferenceError.
 
 *   **Re-declaration:**
-    **var:** You can re-declare a variable using var within the same scope without any error.
-    **let:** You cannot re-declare a variable using let within the same scope. Attempting to do so will result in a SyntaxError.
+    **var:** We can re-declare a variable using var within the same scope without any error.
+    **let:** We cannot re-declare a variable using let within the same scope. Attempting to do so will result in a SyntaxError.
 
 *   **Global Object Property:**
     **var:** Variables declared with var become properties of the global object (e.g., window in a browser environment).
@@ -159,7 +159,7 @@ The global execution context has two phases:
 *   ***Creation***
 *   ***Execution***
 
-During the creation phase, the JavaScript engine moves the variable and function declarations to the top of your code. This is known as hoisting.
+During the creation phase, the JavaScript engine moves the variable and function declarations to the top of our code. This is known as hoisting.
 ```
 console.log(a); // undefined
 var a = 5;
