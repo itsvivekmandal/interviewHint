@@ -46,7 +46,7 @@ res.cookie('refreshToken', refreshToken, {
 
 To improve security, we use **Refresh Token Rotation**. Every time a new Access Token is generated, the server also generates a new Refresh Token and invalidates the old one. This reduces the risk of token reuse and helps detect stolen tokens.
 
-## 5. How Does JWT Token Refreshing Know It’s the Same User?
+## 5. How does JWT token Refreshing know it’s the same user?
 **Answer :** When a user logs in, the server generates an Access Token and a Refresh Token, both containing the same user ID (userId or sub).
 
 The server also stores the refresh-token record in a database or Redis, associated with that user.
