@@ -1,4 +1,4 @@
-# JWT Interview Questions and Answers 🚀
+# SQL Interview Questions and Answers 🚀
 
 ## 1. What is SQL and MySQL?
 **Answer :** SQL (Structured Query Language) is a language used to create, retrieve, modify and manage data in relational databases.
@@ -206,7 +206,7 @@ SELECT
 FROM orders;
 ```
 
-## 14. What is a view?
+## 14. What is a VIEW?
 **Answer :** A view is a named query that can be queried like a table.
 
 A view does not store data. It only stores the SELECT query. Each time you query the view, the database runs that query on the actual tables, so you always see the latest data.
@@ -232,7 +232,7 @@ WHERE amount > (
 );
 ```
 
-## 16. What is stored procedure and key benefits of it?
+## 15. What is stored procedure and key benefits of it?
 **Answer :** A stored procedure is a precompiled SQL code that can be saved and reused.
 
 If you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
@@ -247,6 +247,7 @@ A stored procedure can also have parameters, so it can act based on the paramete
 * **Easy Maintenance :** When updating a procedure, it automatically updates all its use
 ```js
 /////////////////////////////////// FOR SQL //////////////////////////////////////
+
 // To create a stored procedure, use the CREATE PROCEDURE statement:
 CREATE PROCEDURE procedure_name
   @param1 datatype,
@@ -265,6 +266,7 @@ EXEC procedure_name @param1 = 'value1', @param2 = 'value2';
 DROP PROCEDURE procedure_name;
 
 ///////////////////////////////////// FOR MySQL //////////////////////////////////////
+
 // To create a stored procedure, use the CREATE PROCEDURE statement:
 DELIMITER //
 CREATE PROCEDURE based_orders(
@@ -286,7 +288,99 @@ DROP PROCEDURE based_orders;
 
 ```
 
-## 1. What is ACID Properties in sql?
+## 16. What is SQL Triggers?
+**Answer :** A trigger in SQL is a special stored procedure that runs automatically when an INSERT, UPDATE or DELETE operation occurs on a table. 
+
+It helps automate actions and keep data consistent.
+
+### BEFORE and AFTER Triggers
+SQL triggers can be specified to run BEFORE or AFTER the triggering event.
+
+BEFORE Triggers run before an action (INSERT, UPDATE, DELETE) and are used for validation or changing values.
+
+AFTER Triggers run after the action and are used for logging or updating other tables.
+```js
+// MySQL example: auto-fill a column before insert
+CREATE TRIGGER set_created
+BEFORE INSERT ON orders
+FOR EACH ROW
+SET NEW.created_at = NOW();
+
+// MySQL example: log a change after it happens
+CREATE TRIGGER log_price_change
+AFTER UPDATE ON products
+FOR EACH ROW
+INSERT INTO price_log (product_id, old_price, new_price)
+VALUES (OLD.id, OLD.price, NEW.price);
+```
+
+## 17. What is an index in MySQL?
+**Answer :** An index is a data structure that helps MySQL find rows without scanning the entire table in many query patterns.
+
+### Types of indexes
+| Index type | Purpose |
+| :--- | :--- |
+| Primary key | Uniquely identifies rows |
+| Unique index | Enforces uniqueness |
+| Single-column index | Indexes one column |
+| Composite index | Indexes multiple columns |
+| Full-text index | Supports text-search operations |
+| Spatial index | Supports spatial data queries |
+| Functional index | Indexes an expression, where supported |
+```js
+CREATE UNIQUE INDEX idx_users_email
+ON users(email);
+
+CREATE INDEX idx_orders_status_date
+ON orders(status, created_at);
+```
+
+## 18. What is SQL TRANSACTIONS?
+**Answer :** An SQL transaction groups one or more SQL operations (e.g., INSERT, UPDATE, DELETE) into a single unit of work to ensure reliable data processing. It guarantees that all operations are completed successfully or none are applied, preserving data integrity.
+
+* Ensures consistency by committing all changes together.
+* Rolls back changes if any operation fails.
+### SQL Transaction Control Commands
+**1. BEGIN TRANSACTION Command :** Starts a new transaction. All SQL commands after this are treated as part of the same transaction until COMMIT or ROLLBACK is used.
+
+**2. COMMIT Command :** The COMMIT command is used to save all changes made during the current transaction to the database. Once a transaction is committed, the changes are permanent.
+
+**3. ROLLBACK Command :** The ROLLBACK command undoes all changes in the current transaction, useful if something goes wrong or you want to cancel the changes. The database will revert to the state it was in before the BEGIN TRANSACTION was executed.
+
+**4. SAVEPOINT Command :** A SAVEPOINT is used to creates a point within the transaction. It lets you go back to a specific point without canceling the whole transaction.
+
+**5. ROLLBACK TO SAVEPOINT Command :** Reverts work after the savepoint without ending the transaction.
+```js
+// Step 1: Start a new transaction
+START TRANSACTION;
+
+// Step 2: Deduct ₹100 from Account 1
+UPDATE accounts
+SET balance = balance - 100
+WHERE id = 1;
+
+// Step 3: Create a savepoint
+SAVEPOINT after_debit;
+
+// Step 4: Add ₹100 to Account 2
+UPDATE accounts
+SET balance = balance + 100
+WHERE id = 2;
+
+// Step 5: If the second operation fails,
+// rollback to the savepoint
+ROLLBACK TO SAVEPOINT after_debit;
+
+// Step 6: If the entire transaction fails,
+// rollback all changes
+ROLLBACK;
+
+// Step 7: If all operations succeed,
+// permanently commit the changes
+COMMIT;
+```
+
+## 19. What is ACID Properties in SQL?
 **Answer :**
 | Property | What it Means | How SQL Inforces It | Example 
 | :--- | :--- | :--- | :--- |
@@ -294,4 +388,27 @@ DROP PROCEDURE based_orders;
 | Consistency | Valid State to Valid State. A transaction can only take the database from one valid state to another, strictly following all database rules and constraints. | Enforced through database constraints like PRIMARY KEY, FOREIGN KEY, CHECK, and NOT NULL. | If Account A has a rule saying its balance cannot drop below $0, a transaction attempting to withdraw more than the total balance will fail and reject the change.
 | Isolation | Independence. Multiple transactions can execute concurrently without interfering with each other. The database acts as if transactions occur one after another. | Handled via locking mechanisms and Isolation Levels (e.g., Read Committed, Serializable) to prevent read errors. | If two people try to book the last remaining concert ticket at the exact same millisecond, the database isolates the actions so only one transaction succeeds, preventing double-booking.
 | Durability | Permanence. Once a transaction is successfully completed (COMMIT), the changes are permanently saved in non-volatile memory. | Maintained using a Write-Ahead Log (WAL) or transaction logs that record changes to the disk before confirming success. | As soon as you see a "Transfer Successful" screen, those changes will not be lost even if the entire database server suddenly loses power or crashes right after.
+
+## 20. What is the logical execution order of SQL query?
+**Answer :** A conceptual logical order is:
+1. FROM and JOIN
+2. WHERE
+3. GROUP BY
+4. HAVING
+5. SELECT
+6. DISTINCT
+7. ORDER BY
+8. LIMIT
+
+![Alt text](../images/sql_query_logical_order.png)
+
+## 21. How do you optimize a slow SQL query?
+**Answer :** Use a repeatable investigation process:
+1. Identify the exact slow query and its typical parameter values.
+2. Run EXPLAIN or, where safe, EXPLAIN ANALYZE.
+3. Check rows examined, access methods, joins, sorting, and temporary-table operations.
+4. Review indexes and whether their column order matches the workload.
+5. Select only the necessary columns and rows.
+6. Reduce unnecessary joins, repeated computations, and excessive data transfer.
+7. Measure again with representative data and concurrency.
 
