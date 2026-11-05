@@ -412,3 +412,134 @@ COMMIT;
 6. Reduce unnecessary joins, repeated computations, and excessive data transfer.
 7. Measure again with representative data and concurrency.
 
+## 22. What is connection pooling?
+**Answer :** Connection pooling reuses established database connections instead of opening a new connection for every request.
+
+### Benefits:
+* Lower connection-setup overhead.
+* Controlled concurrency.
+* Reduced connection churn.
+* Better resource management.
+```js
+// For a Node.js backend, a pool can be configured using a MySQL driver:
+
+import mysql from "mysql2/promise";
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10
+});
+
+const [rows] = await pool.execute(
+  "SELECT id, name FROM customers WHERE id = ?",
+  [1]
+);
+```
+
+## 23. What is a lock in MySQL?
+**Answer :**
+A lock coordinates concurrent operations so they do not interfere in ways that violate transactional guarantees.
+
+### Common concepts:
+* **Shared locks :** permit compatible readers.
+* **Exclusive locks :** protect changes to data.
+* **Row-level locks :** protect records or index records/ranges involved in an operation.
+* **Metadata locks :** coordinate access to database object definitions.
+* **Intention locks :** indicate that a transaction intends to acquire finer-grained locks.
+
+## 24. What is a deadlock?
+**Answer**
+A deadlock occurs when transactions wait on each other's locks in a cycle.
+
+### Example:
+* Transaction A locks row 1 and requests row 2.
+* Transaction B locks row 2 and requests row 1.
+* Neither can proceed without the other releasing a lock.
+InnoDB detects deadlocks and normally rolls back one of the transactions to break the cycle.
+
+### Ways to reduce deadlocks:
+* Acquire rows in a consistent order.
+* Keep transactions short.
+* Add suitable indexes to reduce unnecessary locking.
+* Retry transactions that fail with a deadlock error.
+Deadlocks are not necessarily evidence of a broken database; applications must handle them safely.
+
+## 25. What is a dirty read, non-repeatable read, and phantom read?
+**Answer :**
+* **Dirty read :** A transaction reads uncommitted data from another transaction.
+* **Non-repeatable read :** Reading the same row twice returns different committed values.
+* **Phantom read :** Repeating a range query finds a different set of qualifying rows.
+```js
+// Example of a phantom-like scenario:
+
+// Transaction A:
+START TRANSACTION;
+
+SELECT *
+FROM orders
+WHERE amount > 2000;
+
+
+// Transaction B inserts and commits another order with amount 2500.
+
+// If Transaction A repeats the query, the result depends on its isolation level and read type. Under InnoDB's normal consistent snapshot reads in REPEATABLE READ, both reads generally use the same snapshot.
+```
+
+## 26. What is replication in MySQL?
+**Answer :**
+Replication copies database changes from a source server to one or more replica servers.
+
+### Common uses:
+* Read scaling.
+* Reporting workloads.
+* High availability architectures.
+* Disaster recovery.
+In a common asynchronous setup, a source commits a transaction and replicas apply its changes later.
+
+That introduces a potential replication lag. A read immediately after a write may return stale data from a lagging replica.
+
+For read-after-write consistency, applications can route relevant reads to the source or use an explicit consistency strategy.
+
+## 27. What is partitioning?
+**Answer :** Partitioning divides a table into smaller logical partitions managed by MySQL.
+
+This is an illustrative quarterly partitioning scheme for a table whose primary key includes the partitioning column.
+
+Partitioning can help with data lifecycle management and partition pruning, but it does not automatically speed up every query.
+MySQL also imposes restrictions on unique keys and partitioning expressions, so design must account for those rules.
+
+```js
+CREATE TABLE events (
+    id BIGINT NOT NULL,
+    event_date DATE NOT NULL,
+    payload JSON,
+    PRIMARY KEY (id, event_date)
+)
+PARTITION BY RANGE COLUMNS(event_date) (
+    PARTITION p2026q3
+        VALUES LESS THAN ('2026-10-01'),
+    PARTITION p2026q4
+        VALUES LESS THAN ('2027-01-01'),
+    PARTITION p_future
+        VALUES LESS THAN (MAXVALUE)
+);
+```
+
+## 28. What is sharding, and how is it different from partitioning?
+**Answer :**
+Partitioning divides data within a database table under one MySQL-managed table definition.
+
+Sharding distributes data across separate database servers or independently managed database instances.
+
+### Example:
+* **Partitioning :** partition an events table by month.
+* **Sharding :** store customers with IDs in one range on server A and another range on server B.
+
+Sharding can increase horizontal capacity, but adds complexity around routing, joins, transactions, resharding, and operational management. It is not a substitute for first understanding indexes, query patterns, and workload bottlenecks.
+
+![Alt text](../images/MySQL_Scaling_Strategies_Infographic.png)
+
