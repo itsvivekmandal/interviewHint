@@ -545,9 +545,6 @@ Sharding can increase horizontal capacity, but adds complexity around routing, j
 
 
 # SQL Coding Problems
-<!-- <table>
-<tr>
-<td> -->
 
 <div style="display: flex; gap: 40px;">
 <div>
@@ -561,8 +558,6 @@ Sharding can increase horizontal capacity, but adds complexity around routing, j
 | 4 | Diana Prince | diana.prince@example.com | active | 
 | 5 | Evan Wright | alice.smith@example.com | active |
 
-<!-- </td>
-<td> -->
 </div>
 <div>
 
@@ -580,12 +575,57 @@ Sharding can increase horizontal capacity, but adds complexity around routing, j
 | 9 | 2 | Denim Jacket | 75.00 | completed |
 | 10 | 2 | Mechanical Keyboard | 89.00 | completed |
 
-<!-- </td>
-</tr>
-</table> -->
+</div>
+</div>
+
+<div style="display: flex; gap: 20px; flex-wrap: wrap;">
+
+  <!-- FIRST TABLE -->
+  <div style="flex: 1; min-width: 250px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Table 1 - Col 1</th>
+          <th>Table 1 - Col 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data A</td>
+          <td>Data B</td>
+        </tr>
+        <tr>
+          <td>Data C</td>
+          <td>Data D</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECOND TABLE -->
+  <div style="flex: 1; min-width: 250px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Table 2 - Col 1</th>
+          <th>Table 2 - Col 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data X</td>
+          <td>Data Y</td>
+        </tr>
+        <tr>
+          <td>Data Z</td>
+          <td>Data W</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
-</div>
+
 
 
 ## 29. Find customers with more than one order.
