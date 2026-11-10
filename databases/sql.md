@@ -6,7 +6,7 @@ MySQL is a relational database management system that support SQL.
 
 ## 2. What are the different types of SQL commands?
 **Answer :** SQL commands are commonly grouped into five categories.
-|Category |	Purpose | Examples |
+ |Category |	Purpose | Examples |
 | :--- | :--- | :--- |
 |DDL (Data Definition Language) | Define database structures | CREATE, ALTER, DROP, TRUNCATE |
 |DML (Data Manipulation Language) |	Modify data	| INSERT, UPDATE, DELETE |
@@ -542,4 +542,77 @@ Sharding distributes data across separate database servers or independently mana
 Sharding can increase horizontal capacity, but adds complexity around routing, joins, transactions, resharding, and operational management. It is not a substitute for first understanding indexes, query patterns, and workload bottlenecks.
 
 ![Alt text](../images/MySQL_Scaling_Strategies_Infographic.png)
+
+
+# SQL Coding Problems
+<!-- <table>
+<tr>
+<td> -->
+
+<div style="display: flex; gap: 40px;">
+<div>
+
+## Users
+| id | name | email | status |
+| :--- | :--- | :--- | :--- |
+| 1 | Alice Smith | alice.smith@example.com | active |
+| 2 | Bob Jones | bob.jones@example.com | active | 
+| 3 | Charlie Brown | charlie.brown@example.com | inactive | 
+| 4 | Diana Prince | diana.prince@example.com | active | 
+| 5 | Evan Wright | alice.smith@example.com | active |
+
+<!-- </td>
+<td> -->
+</div>
+<div>
+
+## Orders
+| id | user_id | name | rate | status |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | 1 | Wireless Mouse | 29.99 | completed |
+| 2 | 2 | Office Chair | 129.50 | completed |
+| 3 | 3 | Cotton T-Shirt | 15.00 | completed |
+| 4 | 4 | Bluetooth Speaker | 45.99 | completed |
+| 5 | 2 | Wooden Bookshelf | 89.99 | cancelled |
+| 6 | 1 | Running Shoes | 59.99 | completed |
+| 7 | 4 | USB-C Hub | 34.50 | cancelled |
+| 8 | 1 | Dining Table | 299.00 | completed |
+| 9 | 2 | Denim Jacket | 75.00 | completed |
+| 10 | 2 | Mechanical Keyboard | 89.00 | completed |
+
+<!-- </td>
+</tr>
+</table> -->
+
+</div>
+</div>
+
+
+## 29. Find customers with more than one order.
+**Answer :**
+```js
+SELECT u.id, u.name, COUNT(o.id) as total_orders
+FROM users u 
+JOIN orders o ON o.user_id = u.id
+GROUP BY o.user_id
+HAVING total_orders > 1;
+
+// Result
+id  name            total_orders
+1   Alice Smith     3
+2   Bob Jones       4
+4   Diana Prince    2
+```
+## 30. Find customers who have never placed an order.
+```js
+SELECT u.id, u.name, o.id
+FROM users u 
+LEFT JOIN orders o ON o.user_id = u.id
+WHERE o.id IS NULL;
+
+// Result
+id      name
+5       Evan Wright
+
+```
 
