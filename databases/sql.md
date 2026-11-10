@@ -562,73 +562,24 @@ Sharding can increase horizontal capacity, but adds complexity around routing, j
 <div>
 
 ## Orders
-| id | user_id | name | rate | status |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | 1 | Wireless Mouse | 29.99 | completed |
-| 2 | 2 | Office Chair | 129.50 | completed |
-| 3 | 3 | Cotton T-Shirt | 15.00 | completed |
-| 4 | 4 | Bluetooth Speaker | 45.99 | completed |
-| 5 | 2 | Wooden Bookshelf | 89.99 | cancelled |
-| 6 | 1 | Running Shoes | 59.99 | completed |
-| 7 | 4 | USB-C Hub | 34.50 | cancelled |
-| 8 | 1 | Dining Table | 299.00 | completed |
-| 9 | 2 | Denim Jacket | 75.00 | completed |
-| 10 | 2 | Mechanical Keyboard | 89.00 | completed |
+| id | user_id | name | category | rate | status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | 1 | Wireless Mouse | electronic | 29.99 | completed |
+| 2 | 2 | Office Chair | furniture | 129.50 | completed |
+| 3 | 3 | Cotton T-Shirt | clothes | 15.00 | completed |
+| 4 | 4 | Bluetooth Speaker | electronic | 45.99 | completed |
+| 5 | 2 | Wooden Bookshelf | furniture | 89.99 | cancelled |
+| 6 | 1 | Running Shoes | clothes | 59.99 | completed |
+| 7 | 4 | USB-C Hub | electronic | 34.50 | cancelled |
+| 8 | 1 | Dining Table | furniture | 299.00 | completed |
+| 9 | 2 | Denim Jacket | clothes | 75.00 | completed |
+| 10 | 2 | Mechanical Keyboard | electronic | 89.00 | completed |
 
 </div>
 </div>
 
-<div style="display: flex; gap: 20px; flex-wrap: wrap;">
 
-  <!-- FIRST TABLE -->
-  <div style="flex: 1; min-width: 250px;">
-    <table>
-      <thead>
-        <tr>
-          <th>Table 1 - Col 1</th>
-          <th>Table 1 - Col 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Data A</td>
-          <td>Data B</td>
-        </tr>
-        <tr>
-          <td>Data C</td>
-          <td>Data D</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- SECOND TABLE -->
-  <div style="flex: 1; min-width: 250px;">
-    <table>
-      <thead>
-        <tr>
-          <th>Table 2 - Col 1</th>
-          <th>Table 2 - Col 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Data X</td>
-          <td>Data Y</td>
-        </tr>
-        <tr>
-          <td>Data Z</td>
-          <td>Data W</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-
-
-## 29. Find customers with more than one order.
+## 1. Find customers with more than one order.
 **Answer :**
 ```js
 SELECT u.id, u.name, COUNT(o.id) as total_orders
@@ -643,9 +594,20 @@ id  name            total_orders
 2   Bob Jones       4
 4   Diana Prince    2
 ```
-## 30. Find customers who have never placed an order.
+## 2. Find customers who have never placed an order.
+**Answer :**
 ```js
-SELECT u.id, u.name, o.id
+// Using subquery
+SELECT u.id, u.name
+FROM users u
+WHERE NOT EXISTS (
+	SELECT 1 
+    FROM orders o
+    WHERE o.user_id = u.id 
+);
+
+// Using JOIN
+SELECT u.id, u.name
 FROM users u 
 LEFT JOIN orders o ON o.user_id = u.id
 WHERE o.id IS NULL;
@@ -653,6 +615,65 @@ WHERE o.id IS NULL;
 // Result
 id      name
 5       Evan Wright
+```
 
+## 3. Find duplicate email addresses.
+**Answer :**
+```js
+SELECT email, COUNT(email) AS email_count 
+FROM users
+GROUP BY email
+HAVING email_count > 1;
+
+// Result
+email                       email_count
+alice.smith@example.com     2
+```
+
+## 4. Find the second-highest rate.
+**Answer :**
+```js
+SELECT id, user_id, name, category, rate  
+FROM orders
+ORDER BY rate DESC
+LIMIT 1
+OFFSET 1;
+
+// Result
+id      user_id     name            category    rate
+2       2           Office Chair    furniture   129.50
+```
+
+## 5. Find the highest order amount for each customer.
+**Answer :**
+```js
+SELECT u.id, u.name, MAX(o.rate) as m_rate
+FROM users u
+JOIN orders o ON o.user_id = u.id
+GROUP BY o.user_id;
+
+// Result
+id      name            m_rate
+1       Alice Smith     299.00
+2       Bob Jones       129.50
+3       Charlie Brown   15.00
+4       Diana Prince    45.99
+```
+
+## 6. Find orders above the overall average amount.
+**Answer :**
+```js
+SELECT * 
+FROM orders 
+WHERE rate > ( 
+    SELECT AVG(rate) as a_rate FROM orders
+);
+
+// Result
+id   user_id    name                    category        rate
+2    2          Office Chair            furniture       129.50
+5    2          Wooden Bookshelf        furniture       89.99
+8    1          Dining Table            furniture       299.00
+10   2          Mechanical Keyboard     electronic      89.00
 ```
 
